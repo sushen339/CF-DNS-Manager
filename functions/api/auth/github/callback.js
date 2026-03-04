@@ -63,7 +63,7 @@ export async function onRequestGet(context) {
     const userData = await userResponse.json();
 
     // 3. Authorization Check
-    if (allowedUser && userData.login !== allowedUser) {
+    if (!allowedUser || userData.login !== allowedUser) {
         return new Response('Unauthorized user', { status: 403 });
     }
 
